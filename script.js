@@ -1,3 +1,4 @@
+// Reference to the container
 const itemsContainer = document.getElementById("items-container");
 
 // Example JSON data
@@ -19,12 +20,12 @@ const items = [
   }
 ];
 
-// Function to render items on the page
+// Function to render items
 function renderItems() {
   items.forEach(item => {
     const itemElement = document.createElement("div");
     itemElement.className = "item";
-    itemElement.style.borderColor = item.color; // Use color for styling
+    itemElement.style.borderColor = item.color;
 
     itemElement.innerHTML = `
       <h2>${item.title}</h2>
@@ -33,7 +34,16 @@ function renderItems() {
 
     itemsContainer.appendChild(itemElement);
   });
+
+  // Add GSAP animation
+  gsap.from(".item", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.2 // Delay between each item
+  });
 }
 
-// Call the function to render items
+// Render the items
 renderItems();
+
